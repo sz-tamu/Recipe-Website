@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/recipes">
+		<img src="/img/bang_soundeffect.svg" alt="brand image" height="40" width="50" >
+	  </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item ">
+          <a class="nav-link"  href="/recipes">Recipes</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Genres
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Superhero</a></li>
+            <li><a class="dropdown-item" href="#">Manga</a></li>
+            <li><a class="dropdown-item" href="#">humor </a></li>
+			<li><a class="dropdown-item" href="#">slice-of-life</a></li>
+            <li><a class="dropdown-item" href="#">sci-fi</a></li>
+            <li><a class="dropdown-item" href="#">horror </a></li>
+			  <li><a class="dropdown-item" href="#">action</a></li>
+            <li><a class="dropdown-item" href="#">nonfiction </a></li>
+          </ul>
+        </li>
+	 <li class="nav-item active">
+	  <a class="nav-link"  href="/recipes/new">add recipes</a>
+	</li>
+	  <% if (user) { %>
+		<li class="nav-item">
+	  		<a class="nav-link"  href="/logout">Logout</a>
+		</li>
+	 <% } else { %>
+		<li class="nav-item">
+          <a class="nav-link"  href="/login">Login</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link"  href="/signup">Sign up</a>
+        </li>
+	  <% } %>
+		
+		
+        
+      </ul>
+      <form class="d-flex form-inline my-2 my-lg-0" action="/recipes/search" method="GET" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="term">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
