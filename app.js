@@ -14,7 +14,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
 
 //config import
-const config = require('./config');
+try {
+	 config = require('./config');
+} catch (e) {
+	console.log("could not import config config. prob means not working locally")
+	console.log(e);
+}
 
 //route import
 const recipeRoutes = require('./routes/recipes');
@@ -36,7 +41,12 @@ app.use(morgan('tiny'));
 // const seed = require("./utils/seed");
 // seed();
 //connect to DB
-mongoose.connect(config.db.connection, { useNewUrlParser: true, useUnifiedTopology: true }, );
+try {
+	mongoose.connect(config.db.connection, { useNewUrlParser: true, useUnifiedTopology: true } );
+} catch (err) {
+	console.log("Could not connect using config. Prob means not working locally")
+	mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
+}
 
 //use npm packages
 app.set("view engine", "ejs");
@@ -44,7 +54,7 @@ app.set("view engine", "ejs");
 app.use(express.static('public'));
 
 app.use(expressSession({
-	secret: "asdjlfgnasdojvas",
+	secret: process.env.ES_SECRET || config.expressSession.secret,
 	resave: false,
 	saveUninitialized: false
 }))
@@ -74,7 +84,7 @@ app.use("/", mainRoutes);
 app.use("/", authRoutes)
 
 // listen
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
 	console.log("yelp_app is running...")
 })
 
