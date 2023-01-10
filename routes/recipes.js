@@ -19,19 +19,16 @@ router.get("/", async (req, res) => {
 })
 
 //create
-router.post("/", isLoggedIn, async (req, res) => {
-	const genre = req.body.genre.toLowerCase();
+router.post("/", /*isLoggedIn,*/ async (req, res) => {
+	const cuisine = req.body.cuisine.toLowerCase();
 	const newRecipe = {
 		
 		title: req.body.title,
-		description: req.body.description,
-		author: req.body.author,
-		publisher: req.body.publisher,
-		date: req.body.date,
-		series: req.body.series,
-		issue: req.body.issue,
-		genre,
-		color: !!req.body.color,
+		directions: req.body.directions,
+		servings: req.body.servings,
+		time: req.body.time,
+		ingredients: req.body.ingredients,
+		cuisine,
 		image: req.body.image,
 		owner: {
 			id: req.user._id,
@@ -53,7 +50,7 @@ router.post("/", isLoggedIn, async (req, res) => {
 
 
 //new
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/new", /*isLoggedIn,*/ (req, res) => {
 	res.render("recipes_new");
 })
 
@@ -73,25 +70,25 @@ router.get("/search", async (req, res) => {
 })
 
 //cuisine
-router.get("/genre/:genre", async (req, res) => {
+router.get("/cuisine/:cuisine", async (req, res) => {
 	// check if genre is valid
-	const validGenres = [
-		"superhero",
-		"manga",
-		"humor",
-		"slice-of-life",
-		"sci-fi",
-		"horror",
-		"action",
-		"nonfiction",
-		"fantasy"
+	const validCuisines = [
+		"chicken",
+		"beef",
+		"pork",
+		"noodles",
+		"seafood",
+		"dessert",
+		"snacks",
+		"vegetables",
+		"sandwiches"
 	];
 	
-	if (validGenres.includes(req.params.genre.toLowerCase())) {
-		const recipes = await Recipe.find({genre: req.params.genre}).exec();
+	if (validCuisines.includes(req.params.cuisine.toLowerCase())) {
+		const recipes = await Recipe.find({cuisine: req.params.cuisine}).exec();
 		res.render("recipes", {recipes});
 	} else {
-		res.send("please enter valid genre")
+		res.send("please enter valid cuisine")
 	}
 })
 
@@ -109,7 +106,7 @@ router.get("/:id", async (req, res) => {
 })
 
 //edit
-router.get("/:id/edit", checkRecipeOwner, async (req, res) => {
+router.get("/:id/edit", /*checkRecipeOwner,*/ async (req, res) => {
 	const recipe = await Recipe.findById(req.params.id).exec();
 	res.render("recipes_edit", {recipe});
 	
@@ -117,18 +114,15 @@ router.get("/:id/edit", checkRecipeOwner, async (req, res) => {
 
 //update
 router.put("/:id",checkRecipeOwner, async (req, res) => {
-	const genre = req.body.genre.toLowerCase();
+	const cuisine = req.body.cuisine.toLowerCase();
 	const recipeBody = {
 		
 		title: req.body.title,
-		description: req.body.description,
-		author: req.body.author,
-		publisher: req.body.publisher,
-		date: req.body.date,
-		series: req.body.series,
-		issue: req.body.issue,
-		genre,
-		color: !!req.body.color,
+		directions: req.body.directions,
+		servings: req.body.servings,
+		time: req.body.time,
+		ingredients: req.body.ingredients,
+		cuisine,
 		image: req.body.image
 		
 	} 

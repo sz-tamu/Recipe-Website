@@ -16,7 +16,7 @@
 
 .card-title {
 	text-align: center;
-	font-family: 'Red Rose', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 	font-size: 1.8rem;
 }
@@ -26,6 +26,10 @@
 	font-family: 'Roboto';
 	line-height: 1.4;
 	
+}
+
+.keep-whitespace {
+	white-space: pre-line;
 }
 
 /* show_comics */

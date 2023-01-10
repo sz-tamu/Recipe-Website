@@ -7,39 +7,29 @@
 		</div>
 		<div class="col-6 show_details-container">
 			<h1><%= recipe.title %></h1>
-			<p><%= recipe.description %></p>
+			<p class="keep-whitespace"><%= recipe.directions %></p>
 			<table class="table">
 
 			  <tbody>
 				<tr>
 				  <th scope="row">Author</th>
-				  <td><%= recipe.author %></td>
+				  <td><%= recipe.servings %></td>
 
 				</tr>
 				<tr>
-				  <th scope="row">Publisher</th>
-				  <td><%= recipe.publisher %></td>
+				  <th scope="row">Time</th>
+				  <td><%= recipe.time %></td>
 				</tr>
 				<tr>
-				  <th scope="row">Date</th>
-				  <td><%= recipe.date %></td>
+				  <th scope="row">ingredients</th>
+				  <td class="keep-whitespace"><%= recipe.ingredients %></td>
 				</tr>
+				
 				<tr>
-				  <th scope="row">Series</th>
-				  <td><%= recipe.series %></td>
+				  <th scope="row">cuisine</th>
+				  <td><%= recipe.cuisine %></td>
 				</tr>
-				<tr>
-				  <th scope="row">Issue</th>
-				  <td><%= recipe.issue %></td>
-				</tr>
-				<tr>
-				  <th scope="row">Genre</th>
-				  <td><%= recipe.genre %></td>
-				</tr>
-				<tr>
-				  <th scope="row">Color?</th>
-				  <td><%= recipe.color %></td>
-				</tr>
+				
 			  </tbody>
 			</table>
 			<% if (user && user.username === recipe.owner.username) { %>
