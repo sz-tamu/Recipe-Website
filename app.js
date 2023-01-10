@@ -12,6 +12,7 @@ const morgan = require('morgan')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
+const flash = require("connect-flash");
 
 //config import
 try {
@@ -63,6 +64,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(methodOverride('_method'))
 
+//flash config
+
+app.use(flash());
 //pssport config
 app.use(passport.initialize());
 app.use(passport.session()); //allows persistent session
